@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RahulGPT API Test</title>
+</head>
+<body>
+
+  <h2>RahulGPT API Test</h2>
+
+  <button onclick="createConversation()">
+    Create Conversation
+  </button>
+
+  <pre id="result"></pre>
+
+  <script>
+    const token = "YOUR_JWT_TOKEN_HERE";
+
+    async function createConversation() {
+      const response = await fetch(
+        "http://localhost:5000/api/conversations",
+        {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      const data = await response.json();
+
+      document.getElementById("result").textContent =
+        JSON.stringify(data, null, 2);
+    }
+  </script>
+
+</body>
+</html>
